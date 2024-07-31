@@ -1,7 +1,7 @@
 ```markdown
-# Packtup Downloader
+# Packtpub Downloader
 
-**Packtup Downloader** is a Python-based tool designed to download TRUE epub books.
+**Packtpub Downloader** is a Python-based tool designed to download TRUE epub books.
 
 ## Installation
 
@@ -10,7 +10,7 @@ To get started with Packtup Downloader, follow these steps:
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/mohamedhani1/packtup-downloader.git
+   git clone https://github.com/mohamedhani1/packtpub-downloader.git
    cd packtup-downloader
    ```
 
@@ -28,4 +28,4 @@ To get started with Packtup Downloader, follow these steps:
 
 ## Author
 
-**Packtup Downloader** is maintained by [Caliginous](https://t.me/Caliginous_0). Feel free to reach out for any questions or feedback.
+**Packtpub Downloader** is maintained by [Caliginous](https://t.me/Caliginous_0). Feel free to reach out for any questions or feedback.
