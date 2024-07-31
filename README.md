@@ -1,7 +1,7 @@
 ```markdown
 # Packtup Downloader
 
-**Packtup Downloader** is a Python-based tool designed to automate the downloading of Packt Publishing's free eBooks. It simplifies the process of obtaining these resources with minimal user interaction.
+**Packtup Downloader** is a Python-based tool designed to download TRUE epub books.
 
 ## Installation
 
