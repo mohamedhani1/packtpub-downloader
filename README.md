@@ -9,7 +9,7 @@ To get started with Packtup Downloader, follow these steps:
 
 1. **Clone the Repository**:
 
-   ```bash
+   bash
    git clone https://github.com/mohamedhani1/packtpub-downloader.git
    cd packtup-downloader
    ```
