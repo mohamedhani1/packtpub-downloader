@@ -19,13 +19,6 @@ class Utils:
         pass
 
     @staticmethod
-    def remove_three_dot_tags(xml_string):
-        pattern = r"(<[^>]*>)(.*?)(\.\.\.\s*.*?)(</[^>]*>)"  # Matches opening tag, content, "...", closing tag
-        replacement = r"\1\2\4"  # Keeps opening and closing tags, removes "... content"
-        return re.sub(pattern, replacement, xml_string, flags=re.DOTALL)
-
-
-    @staticmethod
     def clean_text(text):
         ok = re.compile(r'[^\\/:*,?!"&’…– <>|_]')
         text = "".join(x if ok.match(x) else " " for x in text)
@@ -41,7 +34,7 @@ class Utils:
         
         # Define allowed attributes
         allowed_attributes = [
-            "src",
+            "src", "href", "alt", "colspan", "rowspan", "span", "start", "value",
             "about", "accesskey", "aria-activedescendant", "aria-atomic", 
             "aria-autocomplete", "aria-busy", "aria-checked", "aria-colcount", 
             "aria-colindex", "aria-colspan", "aria-controls", "aria-current", 
@@ -95,27 +88,6 @@ class Utils:
             for attr_to_delete in attrs_to_delete:
                 del elem.attrib[attr_to_delete]
                 
-            # Fix unclosed <html:pre> tags
-            if elem.tag == '{http://www.w3.org/1999/xhtml}pre':
-                # Find the immediate parent tag of <html:pre>
-                parent = None
-                for e in root.iter():
-                    for child in e:
-                        if child == elem:
-                            parent = e
-                if parent is not None:
-                    # Replace <html:pre> with its text content
-                    if elem.text:
-                        if parent.text is None:
-                            parent.text = ''
-                        parent.text += elem.text.replace('...', '')  # Remove "..."
-                    # Append <html:pre>'s tail content to its parent's text
-                    if elem.tail:
-                        if parent.text is None:
-                            parent.text = ''
-                        parent.text += elem.tail.replace('...', '')  # Remove "..."
-                    # Remove the <html:pre> element from its parent
-                    parent.remove(elem)
         
         # Return the filtered XML content
         return ET.tostring(root, encoding="unicode")
@@ -155,7 +127,7 @@ class Utils:
         soup.html.insert(0, head_tag)
         soup = soup.prettify()
         soup_str = str(soup).replace('<?xml encoding="utf-8" ?>', '<?xml version="1.0" encoding="utf-8"?>\n').replace(' type="square"', '').replace(' type="disc"', '').replace(' type="bullet"', '')
-        soup_str = self.remove_three_dot_tags(self.filter_attributes(soup_str))
+        soup_str = self.filter_attributes(soup_str)
         return soup_str
 
 
@@ -717,4 +689,5 @@ def main():
         book.create_epub()
         
 
-main()
+if __name__ == "__main__":
+    main()
